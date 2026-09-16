@@ -1,0 +1,22 @@
+file,column,description
+news_cleaned.csv,article_id,ID unik cnbc_<8 digit MD5(url)>
+news_cleaned.csv,title_clean,Judul setelah normalisasi unicode + buang boilerplate
+news_cleaned.csv,content_clean,Isi setelah normalisasi unicode + buang boilerplate
+news_cleaned.csv,published_at_utc,Waktu publikasi asli CNBC (UTC)
+news_cleaned.csv,published_at_wib,Waktu publikasi dikonversi ke WIB
+news_cleaned.csv,match_rule,tier_a (kategori inti) atau keyword (judul + kategori politik)
+news_cleaned.csv,duplicate_group,ID grup judul duplikat (kosong bila unik)
+news_cleaned.csv,scraped_at,Waktu artikel di-scrape
+exchange_rate_bi_cleaned.csv,trading_date,Tanggal perdagangan (kalender dari data BI)
+exchange_rate_bi_cleaned.csv,usd_idr_rate,Nilai Rupiah untuk 1 USD (JISDOR)
+exchange_rate_bi_cleaned.csv,rate_type,Jenis kurs: JISDOR
+news_alignment.csv,day_type,trading_day / weekend / holiday
+news_alignment.csv,effective_trading_date,Hari perdagangan pertama setelah publikasi WIB
+news_alignment.csv,alignment_rule,Aturan pemetaan: next_trading_day
+daily_aligned_dataset.csv,usd_idr_rate,Kurs JISDOR hari perdagangan
+daily_aligned_dataset.csv,previous_rate,Kurs hari perdagangan sebelumnya
+daily_aligned_dataset.csv,rate_change,Selisih kurs terhadap hari sebelumnya
+daily_aligned_dataset.csv,daily_return,rate_change / previous_rate
+daily_aligned_dataset.csv,geopolitical_news_count,Jumlah berita geopolitik yang dipetakan ke hari itu
+daily_aligned_dataset.csv,article_ids,Daftar article_id (dipisah koma)
+daily_aligned_dataset.csv,has_geopolitical_news,True bila ada berita geopolitik

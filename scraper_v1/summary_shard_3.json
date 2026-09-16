@@ -1,0 +1,12 @@
+{
+  "shard": 3,
+  "urls": 33016,
+  "already_done": 33013,
+  "attempted": 0,
+  "success": 0,
+  "dead": 0,
+  "failed": 0,
+  "content_status": {},
+  "block_cooldowns": 0,
+  "seconds": 0.0
+}

@@ -1,0 +1,8 @@
+stage,articles
+raw_total_articles,131819
+raw_content_ok,100907
+geopolitics_selected,15008
+removed_duplicate,47
+removed_missing_title,5
+removed_no_next_trading_day,15
+final_cleaned,14941

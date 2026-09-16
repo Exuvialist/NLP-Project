@@ -1,0 +1,9 @@
+# file besar - simpan di Drive, jangan di git
+scraper_v1/*.db
+scraper_v1/*.db-wal
+scraper_v1/*.db-shm
+scraper_v1/cnbc_articles.csv
+scraper_v1/cnbc_articles_geopolitics.csv
+data/cleaned/news_cleaned.csv
+reports/
+reports.zip
