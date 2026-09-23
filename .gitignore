@@ -7,3 +7,7 @@ scraper_v1/cnbc_articles_geopolitics.csv
 data/cleaned/news_cleaned.csv
 reports/
 reports.zip
+*.rar
+*.zip
+__pycache__/
+*.py[cod]
