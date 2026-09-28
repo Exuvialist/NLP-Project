@@ -39,7 +39,8 @@
       "scraped_at"
     ],
     "published_wib_start": "2021-09-01",
-    "published_wib_end": "2026-08-31"
+    "published_wib_end": "2026-08-31",
+    "articles_without_next_trading_day": 0
   },
   "alignment": {
     "rows": 14941,

@@ -53,8 +53,8 @@ def plot_metrics_comparison(results_test: pd.DataFrame) -> None:
     fig, ax = plt.subplots(figsize=(9, 5))
     for offset, metric, label, color in [
         (-width, "directional_accuracy", "Akurasi arah", "#4c72b0"),
-        (0.0, "f1_macro", "F1 macro", "#dd8452"),
-        (width, "roc_auc", "ROC AUC", "#55a868"),
+        (0.0, "f1_up", "F1 naik", "#55a868"),
+        (width, "f1_macro", "F1 macro", "#dd8452"),
     ]:
         values = model_results[metric].to_numpy()
         ax.bar(x + offset, values, width, label=label, color=color)
@@ -66,7 +66,7 @@ def plot_metrics_comparison(results_test: pd.DataFrame) -> None:
     ax.set_xticklabels(model_results["model"], rotation=12)
     ax.set_ylim(0.0, 0.85)
     ax.set_ylabel("Nilai metrik")
-    ax.set_title("Perbandingan model pada test 2026 (arah USD/IDR)")
+    ax.set_title("Perbandingan akurasi arah dan F1 pada test 2026 (arah USD/IDR)")
     ax.legend(fontsize=8, loc="upper right")
     fig.tight_layout()
     fig.savefig(FIGURES_DIR / "metrics_comparison_test.png", dpi=150)
@@ -160,11 +160,11 @@ def plot_predictions_vs_actual(predictions_test: pd.DataFrame) -> None:
                 c=np.where(correct[mask], "#55a868", "#c44e52"), edgecolors="white", linewidths=0.4, zorder=3,
             )
         accuracy = accuracy_score(group["y_true"], group["y_pred"])
-        auc_value = roc_auc_score(group["y_true"], group["y_proba"])
+        f1_macro = f1_score(group["y_true"], group["y_pred"], average="macro", zero_division=0)
         limit = max(float(np.nanmax(np.abs(returns))) * 1.35, 0.5)
         ax.set_ylim(-limit, limit)
         ax.set_ylabel("Return (%)", fontsize=8)
-        ax.set_title(f"{model_name} (akurasi={accuracy:.3f}, AUC={auc_value:.3f})", fontsize=9)
+        ax.set_title(f"{model_name} (akurasi={accuracy:.3f}, F1 macro={f1_macro:.3f})", fontsize=9)
         ax.grid(alpha=0.25)
         ax.legend(handles=legend_handles, fontsize=6.3, loc="upper left", ncol=2)
     fig.tight_layout()
@@ -172,7 +172,7 @@ def plot_predictions_vs_actual(predictions_test: pd.DataFrame) -> None:
     plt.close(fig)
 
 
-def draw_box(ax, x, y, width, height, text, facecolor="#eef3fa", edgecolor="#4c72b0", fontsize=9) -> None:
+def draw_box(ax, x, y, width, height, text, facecolor="#eef3fa", edgecolor="#4c72b0", fontsize=9, dashed=False) -> None:
     box = FancyBboxPatch(
         (x, y),
         width,
@@ -181,9 +181,14 @@ def draw_box(ax, x, y, width, height, text, facecolor="#eef3fa", edgecolor="#4c7
         linewidth=1.2,
         facecolor=facecolor,
         edgecolor=edgecolor,
+        linestyle="--" if dashed else "-",
     )
     ax.add_patch(box)
     ax.text(x + width / 2, y + height / 2, text, ha="center", va="center", fontsize=fontsize, wrap=True)
+
+
+def draw_note(ax, x, y, text, color="#8a6d3b", fontsize=7.5) -> None:
+    ax.text(x, y, text, ha="center", va="top", fontsize=fontsize, style="italic", color=color)
 
 
 def draw_arrow(ax, start, end) -> None:
@@ -192,38 +197,58 @@ def draw_arrow(ax, start, end) -> None:
 
 
 def plot_pipeline_diagram() -> None:
-    fig, ax = plt.subplots(figsize=(11, 7))
-    ax.set_xlim(0, 11)
-    ax.set_ylim(0, 10)
+    fig, ax = plt.subplots(figsize=(14, 6.6))
+    ax.set_xlim(0, 14)
+    ax.set_ylim(2.3, 8.6)
     ax.axis("off")
 
-    draw_box(ax, 0.3, 8.6, 3.0, 0.9, "Data kurs USD/IDR (JISDOR BI)")
-    draw_box(ax, 0.3, 7.0, 3.0, 0.9, "Market features\n(lag return, MA, volatilitas)", facecolor="#fdf3e7", edgecolor="#dd8452")
-    draw_box(ax, 4.0, 8.6, 3.2, 0.9, "Berita geopolitik CNBC\n(14.941 artikel)")
-    draw_box(ax, 4.0, 7.0, 3.2, 0.9, "Pembersihan teks (Tugas 1)")
-    draw_box(ax, 3.5, 5.4, 1.7, 0.9, "Sentimen\nVADER + LM", facecolor="#e8f4ec", edgecolor="#55a868")
-    draw_box(ax, 5.7, 5.4, 1.9, 0.9, "TF-IDF + SVD\n(fit di train)", facecolor="#e8f4ec", edgecolor="#55a868")
-    draw_box(ax, 2.6, 3.8, 4.0, 0.9, "Agregasi harian + integrasi fitur\n(cutoff: berita terbit < hari t)")
-    draw_box(ax, 3.0, 2.3, 3.2, 0.9, "Logistic Regression\n(StandardScaler di pipeline)")
-    draw_box(ax, 3.4, 0.9, 2.4, 0.8, "Prediksi arah: naik / turun", facecolor="#f2e8f7", edgecolor="#8172b3")
-    draw_box(ax, 6.6, 0.9, 3.2, 0.8, "Evaluasi: akurasi arah, F1,\nAUC, confusion matrix", facecolor="#f2e8f7", edgecolor="#8172b3")
+    # --- kolom 1: sumber data ---
+    ax.text(1.5, 8.15, "Sumber data", fontsize=10, style="italic", color="#555555", ha="center")
+    draw_box(ax, 0.15, 6.85, 2.7, 0.95, "Kurs JISDOR BI\n1.202 hari perdagangan\n2021-09-01 s.d. 2026-09-01")
+    draw_box(ax, 0.15, 5.55, 2.7, 0.95, "Berita geopolitik CNBC\n14.941 artikel (hasil cleaning Tugas 1)", facecolor="#fdf3e7", edgecolor="#dd8452")
 
-    draw_arrow(ax, (1.8, 8.6), (1.8, 7.9))
-    draw_arrow(ax, (3.3, 7.45), (3.5, 6.3))
-    draw_arrow(ax, (5.6, 8.6), (5.6, 7.9))
-    draw_arrow(ax, (5.6, 7.0), (4.6, 6.3))
-    draw_arrow(ax, (5.6, 7.0), (6.6, 6.3))
-    draw_arrow(ax, (4.35, 5.4), (4.35, 4.7))
-    draw_arrow(ax, (6.65, 5.4), (4.85, 4.7))
-    draw_arrow(ax, (4.6, 3.8), (4.6, 3.2))
-    draw_arrow(ax, (4.6, 2.3), (4.6, 1.7))
-    draw_arrow(ax, (5.8, 1.3), (6.6, 1.3))
+    # --- kolom 2: fitur ---
+    ax.text(4.8, 8.15, "Fitur", fontsize=10, style="italic", color="#555555", ha="center")
+    draw_box(ax, 3.15, 6.85, 3.3, 1.1, "Fitur pasar (9)\nret 1/2/3/5d - rate/MA5, MA20\nvol 5/20 - log_rate", facecolor="#fdf3e7", edgecolor="#dd8452")
+    draw_note(ax, 4.8, 6.72, "jendela berakhir di t (kurs <= t)")
+    draw_box(ax, 3.15, 5.30, 3.3, 1.15, "Sentimen (17)\nVADER: mean/median/std, rasio pos/neg/netral\nLM: polaritas, neg/pos/unc/modal per 1k token", facecolor="#e8f4ec", edgecolor="#55a868")
+    draw_note(ax, 4.8, 5.17, "agregasi harian per artikel")
+    draw_box(ax, 3.15, 3.85, 3.3, 1.15, "TF-IDF + SVD (50)\n5.000 fitur, min_df=3, ngram 1-2, sublinear_tf\nTruncatedSVD -> StandardScaler", facecolor="#e8f4ec", edgecolor="#55a868")
+    draw_note(ax, 4.8, 3.72, "vocabulary/IDF/SVD fit hanya di TRAIN", color="#a94442")
 
-    ax.text(0.3, 9.7, "Sumber data (Tugas 1)", fontsize=10, style="italic", color="#555555")
-    ax.text(3.5, 6.6, "Fitur NLP", fontsize=10, style="italic", color="#555555")
-    ax.set_title("Pipeline Tugas 2: prediksi arah USD/IDR dengan fitur pasar + NLP")
+    # --- integrasi + split ---
+    draw_box(ax, 6.95, 5.30, 2.9, 1.15, "Integrasi harian\n1 baris = 1 hari perdagangan\ncutoff: hanya berita terbit < t")
+    draw_box(ax, 6.95, 3.85, 2.9, 0.95, "Split kronologis\ntrain <= 2024-12 | val 2025\ntest 2026-01 s.d. 2026-08", facecolor="#f2e8f7", edgecolor="#8172b3")
+
+    # --- kolom 3: model & evaluasi ---
+    ax.text(12.05, 8.15, "Model & evaluasi", fontsize=10, style="italic", color="#555555", ha="center")
+    draw_box(ax, 10.30, 6.85, 1.70, 0.85, "model0\npasar (9)")
+    draw_box(ax, 12.20, 6.85, 1.70, 0.85, "model1\n+ sentimen (26)")
+    draw_box(ax, 10.30, 5.80, 1.70, 0.85, "model2\n+ TF-IDF (59)")
+    draw_box(ax, 12.20, 5.80, 1.70, 0.85, "model3\n+ keduanya (76)")
+    draw_note(ax, 12.05, 5.65, "LogisticRegression + StandardScaler\npemilihan text source TF-IDF hanya di validation", color="#555555")
+    draw_box(ax, 10.30, 3.85, 3.60, 1.00, "Evaluasi\nakurasi arah - F1 up/macro - MCC\nROC AUC - confusion matrix", facecolor="#f2e8f7", edgecolor="#8172b3")
+    draw_box(ax, 10.30, 2.75, 3.60, 0.70, "Baseline naif: all-up - persistence", facecolor="#f7f7f7", edgecolor="#999999", fontsize=8)
+
+    # --- guardrail anti-leakage ---
+    draw_box(ax, 0.15, 2.75, 5.95, 1.00,
+             "Guardrail anti-leakage\nfitur kurs hanya <= t - berita hanya yang terbit sebelum hari efektifnya\nTF-IDF/SVD/scaler di-fit pada train saja - test dievaluasi sekali",
+             facecolor="#fff8f0", edgecolor="#a94442", dashed=True, fontsize=8)
+
+    # --- panah ---
+    draw_arrow(ax, (2.85, 7.37), (3.15, 7.42))
+    draw_arrow(ax, (2.85, 6.10), (3.15, 5.92))
+    draw_arrow(ax, (2.85, 5.85), (3.15, 4.55))
+    draw_arrow(ax, (6.45, 7.30), (6.95, 6.20))
+    draw_arrow(ax, (6.45, 5.90), (6.95, 5.90))
+    draw_arrow(ax, (6.45, 4.50), (6.95, 5.58))
+    draw_arrow(ax, (8.40, 5.30), (8.40, 4.80))
+    draw_arrow(ax, (9.85, 4.40), (10.30, 6.10))
+    draw_arrow(ax, (12.10, 5.80), (12.10, 4.85))
+
+    ax.set_title("Arsitektur pipeline Tugas 2: prediksi arah USD/IDR dengan fitur pasar + NLP", fontsize=12)
     fig.tight_layout()
-    fig.savefig(FIGURES_DIR / "pipeline_tugas2.png", dpi=150)
+    fig.savefig(FIGURES_DIR / "pipeline_tugas2.png", dpi=200)
     plt.close(fig)
 
 
@@ -237,10 +262,11 @@ def main() -> None:
     results_validation.to_csv(RESULTS_VALIDATION_CSV, index=False)
     results_test.to_csv(RESULTS_TEST_CSV, index=False)
 
-    print("hasil validasi 2025:")
-    print(results_validation.round(4).to_string(index=False))
-    print("hasil test 2026:")
-    print(results_test.round(4).to_string(index=False))
+    # Print ringkasan hanya model0-model3; results_*.csv tetap memuat baseline naif.
+    print("hasil validasi 2025 (model0-model3):")
+    print(results_validation[results_validation["model"].str.startswith("model")].round(4).to_string(index=False))
+    print("hasil test 2026 (model0-model3):")
+    print(results_test[results_test["model"].str.startswith("model")].round(4).to_string(index=False))
 
     plot_metrics_comparison(results_test)
     plot_confusion_matrices(predictions_test)

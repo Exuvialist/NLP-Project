@@ -151,8 +151,11 @@ def main() -> str:
                 for model, group in predictions.groupby("model", sort=False)
             ]
         )
-        print(f"ringkasan metrik {name}:")
-        print(summary.round(4).to_string(index=False))
+        # Baseline naif tetap dihitung dan tersimpan di CSV prediksi, tetapi
+        # tidak ditampilkan di tabel ringkasan agar fokus pada model0-model3.
+        summary_models = summary[summary["model"].str.startswith("model")]
+        print(f"ringkasan metrik {name} (model0-model3; baseline naif dirujuk di laporan):")
+        print(summary_models.round(4).to_string(index=False))
     return text_source
 
 

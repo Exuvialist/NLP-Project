@@ -43,19 +43,21 @@ Tujuan: menguji apakah fitur NLP dari berita geopolitik menambah sinyal prediksi
 - `src/baseline.py` - baseline naif (all-up, persistence)
 - `src/train.py` - pemilihan text source TF-IDF di validation + pelatihan model0-model3
 - `src/evaluate.py` - metrik, tabel hasil, figure, diagram pipeline
+- `src/make_report_pdf.py` - regenerate `reports/laporan_tugas2.pdf` dari `laporan_tugas2.md` (Chrome headless)
 - `notebook/01_eda.ipynb` - audit data dan EDA
 - `notebook/02_baseline_experiment.ipynb` - orkestrasi eksperimen + interpretasi
 - `notebook/03_pipeline_lengkap.ipynb` - notebook final mandiri: seluruh proses inline dari inisialisasi sampai output, dengan penjelasan tiap langkah
 - `data/processed/` - `train.csv`, `validation.csv`, `test.csv`, `audit_summary.json`
-- `reports/` - `laporan_tugas2.md`, `results_*.csv`, `predictions_*.csv`, `figures/pipeline_tugas2.png`
+- `reports/` - `laporan_tugas2.md` + `laporan_tugas2.pdf` (laporan final), `results_*.csv`, `predictions_*.csv`, `figures/pipeline_tugas2.png`
 
 ## Cara menjalankan
-1. `pip install vaderSentiment pysentiment2 matplotlib scikit-learn pandas`
+1. `pip install vaderSentiment pysentiment2 matplotlib scikit-learn pandas markdown`
 2. `python -m src.data_preparation` (skoring sentimen 14.941 artikel di-cache ke `data/cleaned/news_sentiment.csv`)
 3. `python -m src.train`
 4. `python -m src.evaluate`
-5. Notebook: jalankan `notebook/01_eda.ipynb` lalu `notebook/02_baseline_experiment.ipynb`
-6. Notebook final satu-file: `notebook/03_pipeline_lengkap.ipynb` (semua kode inline, menghasilkan output yang sama)
+5. `python src/make_report_pdf.py` (membuat `reports/laporan_tugas2.pdf`; butuh Chrome/Edge)
+6. Notebook: jalankan `notebook/01_eda.ipynb` lalu `notebook/02_baseline_experiment.ipynb`
+7. Notebook final satu-file: `notebook/03_pipeline_lengkap.ipynb` (semua kode inline, menghasilkan output yang sama)
 
 ## Aturan utama (ringkas)
 - Target: `target_next_up = 1` jika kurs hari perdagangan berikutnya lebih tinggi, flat = 0.
