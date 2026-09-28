@@ -28,3 +28,38 @@ Satya Wira Pramudita 24/543649/PA/23102
 - Hasil: 14.941 artikel dipetakan ke 1.202 hari perdagangan; `daily_aligned_dataset.csv` siap untuk tugas berikutnya.
 ## Catatan
 - Jangan commit file besar (`*.db`, `cnbc_articles*.csv`, `data/cleaned/news_cleaned.csv`); gunakan Drive. Sampel kecil tersedia di `*_sample.csv`.
+
+# Pipeline Tugas 2 NLP - Eksperimen Baseline Arah USD/IDR
+
+Tujuan: menguji apakah fitur NLP dari berita geopolitik menambah sinyal prediksi arah kurs USD/IDR hari berikutnya di luar fitur kurs historis.
+
+## Struktur tambahan
+- `AGENTS.md` - spesifikasi tugas dan aturan metodologi (leakage, split, deliverable)
+- `src/config.py` - konfigurasi eksperimen (seed, periode split, daftar fitur, hyperparameter)
+- `src/data_preparation.py` - audit dataset, target arah, split kronologis, verifikasi leakage
+- `src/feature_market.py` - fitur pasar (lag return, MA, volatilitas; jendela berakhir di t)
+- `src/feature_sentiment.py` - skor VADER + Loughran-McDonald dan agregasi harian
+- `src/feature_tfidf.py` - dokumen harian + TF-IDF/SVD (fit hanya di train)
+- `src/baseline.py` - baseline naif (all-up, persistence)
+- `src/train.py` - pemilihan text source TF-IDF di validation + pelatihan model0-model3
+- `src/evaluate.py` - metrik, tabel hasil, figure, diagram pipeline
+- `notebook/01_eda.ipynb` - audit data dan EDA
+- `notebook/02_baseline_experiment.ipynb` - orkestrasi eksperimen + interpretasi
+- `notebook/03_pipeline_lengkap.ipynb` - notebook final mandiri: seluruh proses inline dari inisialisasi sampai output, dengan penjelasan tiap langkah
+- `data/processed/` - `train.csv`, `validation.csv`, `test.csv`, `audit_summary.json`
+- `reports/` - `laporan_tugas2.md`, `results_*.csv`, `predictions_*.csv`, `figures/pipeline_tugas2.png`
+
+## Cara menjalankan
+1. `pip install vaderSentiment pysentiment2 matplotlib scikit-learn pandas`
+2. `python -m src.data_preparation` (skoring sentimen 14.941 artikel di-cache ke `data/cleaned/news_sentiment.csv`)
+3. `python -m src.train`
+4. `python -m src.evaluate`
+5. Notebook: jalankan `notebook/01_eda.ipynb` lalu `notebook/02_baseline_experiment.ipynb`
+6. Notebook final satu-file: `notebook/03_pipeline_lengkap.ipynb` (semua kode inline, menghasilkan output yang sama)
+
+## Aturan utama (ringkas)
+- Target: `target_next_up = 1` jika kurs hari perdagangan berikutnya lebih tinggi, flat = 0.
+- Cutoff konservatif: fitur hari t hanya memakai kurs <= t dan berita terbit sebelum hari t (aturan next trading day Tugas 1).
+- Split kronologis tanpa shuffle: train s/d 2024-12, validation 2025, test 2026; test dievaluasi sekali.
+- `StandardScaler`, `TfidfVectorizer`, dan `TruncatedSVD` selalu di-fit di dalam pipeline pada data train.
+- Hasil awal: fitur NLP belum terbukti menambah sinyal stabil (test AUC model0 0,567 vs model3 0,568; baseline selalu-naik akurasi 0,571). Detail di `reports/laporan_tugas2.md`.
