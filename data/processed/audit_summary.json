@@ -1,0 +1,77 @@
+{
+  "exchange_rate": {
+    "rows": 1202,
+    "date_start": "2021-09-01",
+    "date_end": "2026-09-01",
+    "columns": [
+      "trading_date",
+      "usd_idr_rate",
+      "previous_rate",
+      "rate_change",
+      "daily_return",
+      "geopolitical_news_count",
+      "article_ids",
+      "has_geopolitical_news"
+    ],
+    "missing_values": {
+      "previous_rate": 1,
+      "rate_change": 1,
+      "daily_return": 1,
+      "article_ids": 1
+    },
+    "duplicate_dates": 0,
+    "zero_change_days": 13,
+    "max_gap_days": 12
+  },
+  "news": {
+    "cleaned_articles": 14941,
+    "cleaned_columns": [
+      "article_id",
+      "source",
+      "url",
+      "title_clean",
+      "content_clean",
+      "published_at_utc",
+      "published_at_wib",
+      "match_rule",
+      "matched_categories",
+      "duplicate_group",
+      "scraped_at"
+    ],
+    "published_wib_start": "2021-09-01",
+    "published_wib_end": "2026-08-31",
+    "articles_without_next_trading_day": 0
+  },
+  "alignment": {
+    "rows": 14941,
+    "rule": "next_trading_day (WIB)",
+    "all_effective_after_publication": true,
+    "lag_days_distribution": {
+      "1": 10262,
+      "2": 1498,
+      "3": 2375,
+      "4": 366,
+      "5": 202,
+      "6": 70,
+      "7": 52,
+      "8": 40,
+      "9": 13,
+      "10": 17,
+      "11": 37,
+      "12": 9
+    },
+    "articles_per_trading_day": {
+      "days_with_news": 1201,
+      "days_without_news": 1,
+      "mean": 12.43,
+      "median": 10.0,
+      "max": 133
+    }
+  },
+  "conventions": {
+    "market_timezone": "Asia/Jakarta (JISDOR terbit 00:00 WIB untuk hari tersebut)",
+    "news_timezone": "Asia/Jakarta (dikonversi dari published_at_utc)",
+    "information_cutoff": "fitur hari t hanya memakai kurs <= t dan berita terbit sebelum hari t",
+    "target": "target_next_up = 1 jika kurs hari perdagangan berikutnya > kurs t; flat = 0"
+  }
+}
