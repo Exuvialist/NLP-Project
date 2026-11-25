@@ -1,0 +1,11 @@
+Phase,Model,Kategori,Dim,Val_Acc(%),Val_AUC,Val_F1,Val_MCC,Test_Acc(%),Delta_Test_vs_M0,Test_AUC,Test_F1,Test_MCC,Test_Brier,PT_Stat(p),McNemar_vs_M0
+Fase 2: Granularity & Filter,M0_Market (Baseline),Baseline Pasar,8,49.79,0.5146,0.4682,-0.0266,50.65,0.0,0.4759,0.4483,-0.0696,0.2553,-0.87(0.386),Baseline
+Fase 2: Granularity & Filter,Market + FinBERT Judul Only,Granulitas: Judul,40,57.81,0.5555,0.565,0.1492,62.34,11.69,0.6314,0.5961,0.2104,0.2391,+2.62(0.009),p=0.013
+Fase 2: Granularity & Filter,Market + FinBERT Content Only,Granulitas: Isi,40,48.1,0.4892,0.4804,-0.039,51.95,1.3,0.5096,0.5005,0.0039,0.293,+0.05(0.962),p=0.885
+Fase 2: Granularity & Filter,Market + FinBERT Judul + Isi,Granulitas: Judul+Isi,40,46.41,0.4636,0.4632,-0.0736,53.9,3.25,0.5244,0.5138,0.0355,0.2902,+0.44(0.658),p=0.590
+Fase 2: Granularity & Filter,Market + FinBERT Judul (Gazetteer Filter),NER Pre-Filter (Gazetteer),40,53.59,0.5111,0.5169,0.0593,55.19,4.55,0.5446,0.5245,0.0597,0.2697,+0.74(0.457),p=0.382
+Fase 2: Granularity & Filter,Market + FinBERT Judul (spaCy Filter),NER Pre-Filter (spaCy),40,53.16,0.526,0.5018,0.0477,56.49,5.84,0.5065,0.5243,0.0752,0.2819,+0.94(0.349),p=0.253
+Fase 2: Granularity & Filter,Market + FinBERT Judul (NER Soft Weighted),NER Soft Weighting,40,54.43,0.533,0.5203,0.0765,59.74,9.09,0.5642,0.541,0.1401,0.279,+1.74(0.081),p=0.059
+Fase 2: Granularity & Filter,Unimodal: FinBERT Judul Only,Unimodal Teks,32,56.12,0.551,0.5381,0.1134,61.69,11.04,0.5744,0.5775,0.1908,0.2558,+2.38(0.017),p=0.024
+Fase 2: Granularity & Filter,Unimodal: FinBERT Content Only,Unimodal Teks,32,54.01,0.5218,0.5368,0.0924,50.65,0.0,0.439,0.4812,-0.0314,0.292,-0.39(0.696),p=1.000
+Fase 2: Granularity & Filter,Unimodal: FinBERT Judul + Isi,Unimodal Teks,32,52.32,0.5119,0.5174,0.039,55.19,4.55,0.5138,0.5101,0.046,0.2738,+0.57(0.567),p=0.443

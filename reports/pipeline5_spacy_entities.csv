@@ -1,0 +1,41 @@
+Entity_Label,Entity_Text,Count
+GPE,China,2461
+GPE,U.S.,2269
+GPE,Ukraine,1294
+GPE,Russia,1259
+ORG,Trump,995
+GPE,Iran,889
+NORP,Russian,544
+GPE,UK,538
+NORP,Chinese,472
+LOC,Europe,432
+GPE,Israel,432
+PERSON,Putin,424
+ORG,EU,377
+GPE,India,327
+ORDINAL,first,311
+ORG,Boeing,278
+PERSON,Trump,247
+GPE,Taiwan,235
+PERSON,Biden,220
+GPE,Gaza,219
+PERSON,Covid,217
+ORG,CNBC,216
+GPE,AI,205
+NORP,European,204
+ORG,NATO,198
+GPE,Japan,181
+GPE,Germany,169
+GPE,Beijing,165
+ORG,Biden,161
+ORG,CNBC Daily Open,156
+GPE,Britain,145
+GPE,France,138
+PERSON,Xi,138
+ORG,Apple,122
+PERSON,SpaceX,119
+ORG,White House,115
+GPE,North Korea,111
+NORP,Israeli,111
+ORG,Pentagon,110
+PERSON,Hormuz,108

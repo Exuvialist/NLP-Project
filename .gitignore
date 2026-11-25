@@ -1,10 +1,19 @@
-# File besar - simpan di Drive, jangan di git
+# Python & Jupyter caches
 __pycache__/
-*.pyc
-data/cleaned/news_cleaned.csv
-data/cleaned/news_sentiment.csv
+*.py[cod]
+*$py.class
+.ipynb_checkpoints/
 
-# Di luar struktur repo (tetap tersedia di lokal mesin pengembang)
-scraper_v1/
-reports/
-AGENTS.md
+# Arsip lokal & database scraping berukuran raksasa
+*.rar
+*.zip
+src/scraper_v1/*.db
+src/scraper_v1/*.db-wal
+src/scraper_v1/*.db-shm
+src/scraper_v1/cnbc_articles.csv
+src/scraper_v1/cnbc_articles_geopolitics.csv
+
+# Cache embedding 768d berukuran besar (otomatis dibuat ulang oleh notebook dari news_cleaned.csv)
+data/processed/embeddings_cache/finbert_title_articles_768d.npy
+data/processed/embeddings_cache/finbert_title_articles_768d_ids.npy
+data/cleaned/news_sentiment.csv

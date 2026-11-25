@@ -1,0 +1,25 @@
+Phase,Model,Kategori,Dim,Val_Acc(%),Val_AUC,Val_F1,Val_MCC,Test_Acc(%),Delta_Test_vs_M0,Test_AUC,Test_F1,Test_MCC,Test_Brier,PT_Stat(p),McNemar_vs_M0
+Fase 3: Complementary,M0_Market (Baseline),Baseline Pasar,8,49.79,0.5146,0.4682,-0.0266,50.65,0.0,0.4759,0.4483,-0.0696,0.2553,-0.87(0.386),Baseline
+Fase 3: Complementary,Anchor: FinBERT Judul Only,Anchor Fase 1-2,40,57.81,0.5555,0.565,0.1492,62.34,11.69,0.6314,0.5961,0.2104,0.2391,+2.62(0.009),p=0.013
+Fase 3: Complementary,Anchor: Market + FinBERT Judul Only,Anchor Fase 2,40,57.81,0.5555,0.565,0.1492,62.34,11.69,0.6314,0.5961,0.2104,0.2391,+2.62(0.009),p=0.013
+Fase 3: Complementary,Market + NMF Topics (16d),Parsial: Topic NMF,24,48.95,0.5256,0.485,-0.0279,49.35,-1.3,0.465,0.4932,0.0,0.2777,+0.00(1.000),p=0.911
+Fase 3: Complementary,Market + BERTopic(FinBERT) (16d),Parsial: BERTopic(FinBERT),24,50.63,0.488,0.4814,-0.006,57.79,7.14,0.5458,0.5259,0.0965,0.2594,+1.20(0.229),p=0.161
+Fase 3: Complementary,Market + spaCy NER Struct (8d),Parsial: spaCy Struct,16,58.23,0.5764,0.5537,0.1615,55.19,4.55,0.5301,0.4619,0.0102,0.256,+0.13(0.899),p=0.360
+Fase 3: Complementary,Market + spaCy NER Full (24d),Parsial: spaCy Full,32,56.54,0.562,0.5551,0.1231,53.25,2.6,0.5331,0.5312,0.0713,0.2743,+0.89(0.375),p=0.720
+Fase 3: Complementary,Market + Gazetteer Makro+FX (10d),Parsial: Gazetteer NER,18,51.9,0.4821,0.4517,0.0101,51.95,1.3,0.4905,0.4576,-0.0443,0.261,-0.55(0.581),p=0.888
+Fase 3: Complementary,Market + Makro Domain (9d),Parsial: Makro Domain,17,53.16,0.5059,0.4896,0.0457,48.7,-1.95,0.4645,0.4292,-0.1121,0.2616,-1.40(0.163),p=0.736
+Fase 3: Complementary,Fase2 + NMF Topics,Tumpuk: +Topic NMF,56,53.16,0.5175,0.5179,0.0521,57.79,7.14,0.5153,0.5162,0.0914,0.3171,+1.14(0.255),p=0.144
+Fase 3: Complementary,Fase2 + BERTopic(FinBERT),Tumpuk: +BERTopic(FinBERT),56,49.79,0.5134,0.4832,-0.0186,64.29,13.64,0.6338,0.6332,0.2669,0.2637,+3.32(0.001),p=0.014
+Fase 3: Complementary,Fase2 + spaCy NER Full,Tumpuk: +spaCy NER,64,53.59,0.552,0.5315,0.0657,49.35,-1.3,0.5081,0.4865,-0.0264,0.3214,-0.33(0.743),p=0.896
+Fase 3: Complementary,Fase2 + Gazetteer Makro+FX,Tumpuk: +Gazetteer NER,50,54.43,0.5324,0.5184,0.0763,58.44,7.79,0.5461,0.5475,0.1203,0.2729,+1.50(0.134),p=0.126
+Fase 3: Complementary,Fase2 + spaCy + Gazetteer NER,Tumpuk: +Dual NER,74,52.32,0.549,0.5224,0.053,53.9,3.25,0.557,0.5318,0.1465,0.3335,+1.82(0.068),p=0.675
+Fase 3: Complementary,Fase2 + Makro Domain (9d),Tumpuk: +Makro Domain,49,54.01,0.5223,0.5389,0.0778,51.95,1.3,0.5444,0.5188,0.0488,0.2917,+0.61(0.543),p=0.904
+Fase 3: Complementary,Fase2 + BERTopic + Makro Domain,Tumpuk: +BERTopic + Makro,65,47.26,0.4796,0.464,-0.0659,54.55,3.9,0.5525,0.5377,0.0755,0.3112,+0.94(0.347),p=0.561
+Fase 3: Complementary,Fase2 + NMF + spaCy Struct,Tumpuk: +NMF + spaCyStruct,64,56.96,0.5464,0.5576,0.1316,52.6,1.95,0.5181,0.4935,0.0,0.3066,+0.00(1.000),p=0.791
+Fase 3: Complementary,Fase2 + BERTopic + Gazetteer,Tumpuk: +BERTopic + Gazetteer,66,48.1,0.4742,0.4607,-0.0573,59.09,8.44,0.6123,0.5489,0.1315,0.2881,+1.64(0.102),p=0.085
+Fase 3: Complementary,Full Stack: Fase2 + BERTopic + Dual NER + Makro,Tumpuk: Full Stack,99,51.48,0.5248,0.5148,0.0318,52.6,1.95,0.5382,0.5258,0.0678,0.3538,+0.84(0.398),p=0.820
+Fase 3: Complementary,Full Stack: Fase2 + NMF + Dual NER + Makro,Tumpuk: Full Stack (NMF),99,50.21,0.5103,0.4923,-0.0067,49.35,-1.3,0.489,0.4927,-0.0038,0.3586,-0.05(0.963),p=0.909
+Fase 3: Complementary,Unimodal: NMF Only (16d),Unimodal Komplemen,16,48.1,0.5049,0.4548,-0.0612,51.95,1.3,0.4938,0.4883,-0.012,0.2559,-0.15(0.881),p=0.906
+Fase 3: Complementary,Unimodal: BERTopic(FinBERT) Only (16d),Unimodal Komplemen,16,51.05,0.4996,0.4652,-0.0045,56.49,5.84,0.5744,0.4901,0.0527,0.2465,+0.66(0.511),p=0.289
+Fase 3: Complementary,Unimodal: Dual NER Only (34d),Unimodal Komplemen,34,54.85,0.544,0.5308,0.0865,48.05,-2.6,0.4723,0.4733,-0.0527,0.2927,-0.66(0.512),p=0.734
+Fase 3: Complementary,Unimodal: Makro Domain Only (9d),Unimodal Komplemen,9,50.63,0.4956,0.3941,-0.0434,53.9,3.25,0.4986,0.3626,-0.126,0.2497,-1.57(0.117),p=0.551

@@ -1,0 +1,19 @@
+Rank,Representasi,Kategori,Model,Test Accuracy,Test AUC,Test F1-Macro,Test MCC,Brier Score
+1,finbert_prosus,Contextual Transformer,MLP (PyTorch),63.64%,0.6272,0.6101,+0.2388,0.2396
+2,hybrid_glove_finbert,Hybrid Multi-Embedding,MLP (PyTorch),62.34%,0.6207,0.5829,+0.2052,0.2459
+3,hybrid_bm25_glove,Hybrid Multi-Embedding,MLP (PyTorch),59.09%,0.5782,0.5629,+0.1409,0.2609
+4,hybrid_bm25_finbert,Hybrid Multi-Embedding,MLP (PyTorch),54.55%,0.5646,0.5249,+0.0546,0.2637
+5,tfidf_svd,Count / Lexical,MLP (PyTorch),53.90%,0.5644,0.5138,+0.0355,0.2601
+6,glove,Dense Static Vectors,MLP (PyTorch),55.19%,0.5625,0.5304,+0.0665,0.2745
+7,fasttext,Dense Static Vectors,MLP (PyTorch),57.79%,0.5498,0.549,+0.1127,0.2811
+8,bow_svd,Count / Lexical,MLP (PyTorch),57.14%,0.5492,0.4885,+0.0651,0.3002
+9,roberta_base,Contextual Transformer,MLP (PyTorch),52.60%,0.5444,0.506,+0.0155,0.2895
+10,flang_roberta,Contextual Transformer,MLP (PyTorch),59.09%,0.537,0.5022,+0.1157,0.3153
+11,hybrid_all_combined,Hybrid Multi-Embedding,MLP (PyTorch),53.25%,0.5332,0.5085,+0.0236,0.2742
+12,all_minilm_l6,Contextual Transformer,MLP (PyTorch),57.14%,0.5298,0.413,+0.0338,0.3304
+13,hybrid_tri_level,Hybrid Multi-Embedding,MLP (PyTorch),52.60%,0.5213,0.4898,-0.0041,0.2813
+14,hybrid_dual_finance,Hybrid Multi-Embedding,MLP (PyTorch),52.60%,0.5201,0.4935,+0.0000,0.2753
+15,bm25_svd,Count / Lexical,MLP (PyTorch),55.19%,0.511,0.4864,+0.0274,0.2531
+16,ngrams_svd,Count / Lexical,MLP (PyTorch),52.60%,0.4997,0.4623,-0.0313,0.3063
+17,word2vec,Dense Static Vectors,MLP (PyTorch),55.19%,0.4979,0.5015,+0.0388,0.3005
+18,M0_Market,Baseline Pasar,MLP (PyTorch),50.65%,0.4762,0.4483,-0.0696,0.2554

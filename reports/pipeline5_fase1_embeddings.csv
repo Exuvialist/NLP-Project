@@ -1,0 +1,19 @@
+Phase,Model,Kategori,Dim,Val_Acc(%),Val_AUC,Val_F1,Val_MCC,Test_Acc(%),Delta_Test_vs_M0,Test_AUC,Test_F1,Test_MCC,Test_Brier,PT_Stat(p),McNemar_vs_M0
+Fase 1: Embeddings,M0_Market (Baseline),Baseline Pasar,8,49.79,0.5146,0.4682,-0.0266,50.65,0.0,0.4759,0.4483,-0.0696,0.2553,-0.87(0.386),Baseline
+Fase 1: Embeddings,bow_svd,Count / Lexical,40,48.52,0.4954,0.4622,-0.0501,57.14,6.49,0.5494,0.4885,0.0651,0.3001,+0.81(0.418),p=0.174
+Fase 1: Embeddings,ngrams_svd,Count / Lexical,40,51.48,0.5035,0.4922,0.0131,55.84,5.19,0.4833,0.4591,0.0214,0.3124,+0.27(0.790),p=0.291
+Fase 1: Embeddings,tfidf_svd,Count / Lexical,40,52.74,0.5025,0.5063,0.0407,53.9,3.25,0.5644,0.5138,0.0355,0.2601,+0.44(0.658),p=0.533
+Fase 1: Embeddings,bm25_svd,Count / Lexical,40,48.95,0.4487,0.4407,-0.0553,55.19,4.55,0.5107,0.4864,0.0274,0.2531,+0.34(0.733),p=0.349
+Fase 1: Embeddings,word2vec,Dense Static,40,53.16,0.54,0.525,0.0555,55.19,4.55,0.4979,0.5015,0.0388,0.3005,+0.48(0.629),p=0.382
+Fase 1: Embeddings,fasttext,Dense Static,40,51.9,0.5311,0.5056,0.0259,57.79,7.14,0.5496,0.549,0.1127,0.2811,+1.40(0.161),p=0.161
+Fase 1: Embeddings,glove,Dense Static,40,51.9,0.5292,0.4993,0.0232,55.19,4.55,0.5625,0.5304,0.0665,0.2745,+0.83(0.408),p=0.443
+Fase 1: Embeddings,all_minilm_l6,Contextual Transformer,40,54.01,0.5472,0.4842,0.0655,57.14,6.49,0.5298,0.413,0.0338,0.3305,+0.42(0.674),p=0.121
+Fase 1: Embeddings,roberta_base,Contextual Transformer,40,51.05,0.527,0.5031,0.0121,52.6,1.95,0.5442,0.506,0.0155,0.2896,+0.19(0.847),p=0.791
+Fase 1: Embeddings,flang_roberta,Contextual Transformer,40,51.9,0.4894,0.448,0.0092,59.09,8.44,0.537,0.5022,0.1157,0.3153,+1.44(0.150),p=0.085
+Fase 1: Embeddings,finbert_prosus,Contextual Transformer,40,57.81,0.5555,0.565,0.1492,62.34,11.69,0.6314,0.5961,0.2104,0.2391,+2.62(0.009),p=0.013
+Fase 1: Embeddings,hybrid_bm25_finbert,Hybrid Fusion,40,46.84,0.494,0.4565,-0.0774,54.55,3.9,0.5608,0.5249,0.0546,0.2633,+0.68(0.497),p=0.488
+Fase 1: Embeddings,hybrid_glove_finbert,Hybrid Fusion,40,47.26,0.469,0.4601,-0.0692,61.04,10.39,0.6198,0.5645,0.1739,0.2444,+2.17(0.030),p=0.026
+Fase 1: Embeddings,hybrid_bm25_glove,Hybrid Fusion,40,46.84,0.4611,0.4624,-0.072,58.44,7.79,0.5733,0.5437,0.1179,0.2619,+1.47(0.142),p=0.134
+Fase 1: Embeddings,hybrid_dual_finance,Hybrid Fusion,40,46.84,0.4914,0.4565,-0.0774,52.6,1.95,0.52,0.4935,0.0,0.2753,+0.00(1.000),p=0.771
+Fase 1: Embeddings,hybrid_tri_level,Hybrid Fusion,40,52.32,0.5064,0.4882,0.0277,54.55,3.9,0.5365,0.5126,0.0405,0.2748,+0.50(0.614),p=0.480
+Fase 1: Embeddings,hybrid_all_combined,Hybrid Fusion,40,49.79,0.4921,0.4846,-0.0176,53.25,2.6,0.5475,0.5085,0.0236,0.2684,+0.29(0.769),p=0.694

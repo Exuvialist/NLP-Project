@@ -1,0 +1,31 @@
+Model,Topic_ID,Top_Terms,Count_Train
+NMF,0,"ukraine, russia, war, ukraine war, putin, russia ukraine, war ukraine, russia war, invasion, nato",
+NMF,1,"china, taiwan, xi, tech, covid, beijing, trade, chip, china xi, india",
+NMF,2,"cnbc, open, daily, daily open, cnbc daily, india, market, markets, open markets, fed",
+NMF,3,"says, chief, ceo, chief says, ceo says, minister says, chinese, official says, official, president",
+NMF,4,"korea, north, north korea, south, south korea, missile, korea fires, fires, missiles, ballistic",
+NMF,5,"airlines, american, boeing, american airlines, flights, united, travel, flight, united airlines, max",
+NMF,6,"israel, hamas, gaza, war, israel hamas, iran, hamas war, netanyahu, attack, israeli",
+NMF,7,"minister, prime, prime minister, minister says, foreign, foreign minister, uk, defense minister, defense, finance",
+NMF,8,"russian, ukraine, putin, russian oil, oil, oligarch, russian oligarch, attack, ukrainian, sanctions",
+NMF,9,"bank, central, central bank, rate, inflation, england, bank england, european central, rates, hikes",
+NMF,10,"europe, eu, gas, energy, oil, russia, germany, prices, supplies, election",
+NMF,11,"biden, trump, house, xi, white house, white, biden says, administration, aid, biden administration",
+NMF,12,"spacex, musk, elon, elon musk, space, starlink, rocket, starship, launch, launches",
+NMF,13,"european, close, stocks, european stocks, stocks close, markets, higher, lower, european markets, markets close",
+NMF,14,"new, covid, uk, cases, hong kong, hong, kong, chinese, pm, rules",
+BERTopic(FinBERT),0,"gaza, killed, attack, israel, israeli, russian, ceasefire, ukraine, drone, hamas",705.0
+BERTopic(FinBERT),1,"russian, court, probe, charges, russia, ukraine, alleged, chinese, sanctions, china",674.0
+BERTopic(FinBERT),2,"election, minister, prime minister, prime, party, pm, win, vote, presidential, trump",528.0
+BERTopic(FinBERT),3,"economy, warns, global, war, crisis, says, recession, chinas, europe, market",451.0
+BERTopic(FinBERT),4,"china, says, trade, ties, nato, membership, relations, russia, nato membership, boost",324.0
+BERTopic(FinBERT),5,"million, internet, starlink, spacex, startup, billion, ev, car, satellites, space",315.0
+BERTopic(FinBERT),6,"says, ukraine, russia, nato, war, putin, taiwan, biden, china, minister says",256.0
+BERTopic(FinBERT),7,"shares, tumble, plunge, drop, low, deliveries, drops, stock, fall, record",204.0
+BERTopic(FinBERT),8,"xi, meet, visit, chinas xi, meets, trip, summit, discuss, biden, chinas",191.0
+BERTopic(FinBERT),9,"heres, need, expect, whats, means, china, happens, mean, doing, boarding",183.0
+BERTopic(FinBERT),10,"spacex, space, mission, starship, nasa, launch, rocket, moon, launches, space station",150.0
+BERTopic(FinBERT),11,"profit, posts, travel, forecast, quarterly, revenue, strong, demand, airlines, travel demand",145.0
+BERTopic(FinBERT),12,"ban, covid, restrictions, travelers, rules, vaccinated, quarantine, china, restrict, chinese",144.0
+BERTopic(FinBERT),13,"close, european, stocks, stocks close, european stocks, higher, markets, lower, close lower, investors",143.0
+BERTopic(FinBERT),14,"bank, rate, central, central bank, rates, bank england, england, hikes, hike, european central",141.0
