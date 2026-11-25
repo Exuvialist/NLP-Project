@@ -1,0 +1,30 @@
+# Core Data & Scientific Computing
+numpy>=2.0.0
+pandas>=2.2.0
+scipy>=1.14.0
+scikit-learn>=1.6.0
+joblib>=1.4.0
+
+# Deep Learning & Transformer NLP
+torch>=2.5.0
+transformers>=4.45.0
+sentence-transformers>=3.0.0
+
+# Topic Modeling, NER & Dimensionality Reduction
+bertopic>=0.16.4
+hdbscan>=0.8.38
+umap-learn>=0.5.6
+spacy>=3.7.0
+# Jalankan setelah install: python -m spacy download en_core_web_sm
+
+# Classical NLP & Tabular Models (Tugas 2 & Benchmark)
+lightgbm>=4.5.0
+gensim>=4.3.0
+vaderSentiment>=3.3.2
+pysentiment2>=0.1.1
+
+# Visualization & Notebook Execution
+matplotlib>=3.9.0
+seaborn>=0.13.0
+nbformat>=5.10.0
+tqdm>=4.66.0

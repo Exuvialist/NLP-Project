@@ -1,0 +1,19 @@
+Rank,Representasi,Kategori,Model Terbaik,Test Accuracy,Test AUC,Test F1-Macro,Test MCC,Brier Score
+1,bm25_svd,Count / Lexical,LogisticRegression,60.39%,0.609,0.4891,+0.1581,0.2372
+2,flang_roberta,Contextual Transformer,LightGBM,58.44%,0.5885,0.4838,+0.0948,0.242
+3,hybrid_dual_finance,Hybrid Multi-Embedding,LogisticRegression,58.44%,0.5849,0.441,+0.0913,0.2391
+4,hybrid_bm25_finbert,Hybrid Multi-Embedding,LogisticRegression,58.44%,0.5778,0.51,+0.1021,0.2409
+5,hybrid_all_combined,Hybrid Multi-Embedding,RandomForest,59.09%,0.5754,0.4545,+0.1165,0.2412
+6,tfidf_svd,Count / Lexical,RandomForest,59.74%,0.5733,0.4381,+0.1647,0.2406
+7,bow_svd,Count / Lexical,RandomForest,56.49%,0.5706,0.3985,+0.0000,0.2423
+8,hybrid_glove_finbert,Hybrid Multi-Embedding,LogisticRegression,56.49%,0.5702,0.4557,+0.0342,0.2416
+9,hybrid_bm25_glove,Hybrid Multi-Embedding,RandomForest,55.84%,0.5668,0.3714,-0.0589,0.2422
+10,M0_Market,Baseline Pasar,LogisticRegression,57.14%,0.5644,0.4235,+0.0380,0.2425
+11,glove,Dense Static Vectors,LightGBM,56.49%,0.5639,0.5065,+0.0626,0.2446
+12,finbert_prosus,Contextual Transformer,LogisticRegression,61.69%,0.5532,0.5274,+0.1912,0.2426
+13,all_minilm_l6,Contextual Transformer,LogisticRegression,57.14%,0.5446,0.3772,+0.0166,0.2568
+14,fasttext,Dense Static Vectors,LogisticRegression,55.19%,0.5387,0.4968,+0.0351,0.2455
+15,hybrid_tri_level,Hybrid Multi-Embedding,LogisticRegression,57.14%,0.5279,0.482,+0.0620,0.2449
+16,roberta_base,Contextual Transformer,LightGBM,55.84%,0.5258,0.5016,+0.0487,0.2513
+17,ngrams_svd,Count / Lexical,LightGBM,55.19%,0.5036,0.4968,+0.0351,0.2536
+18,word2vec,Dense Static Vectors,LogisticRegression,48.05%,0.4836,0.4077,-0.1446,0.2565

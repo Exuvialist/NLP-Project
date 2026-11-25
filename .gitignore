@@ -1,10 +1,19 @@
-# file besar - simpan di Drive, jangan di git
-scraper_v1/*.db
-scraper_v1/*.db-wal
-scraper_v1/*.db-shm
-scraper_v1/cnbc_articles.csv
-scraper_v1/cnbc_articles_geopolitics.csv
-data/cleaned/news_cleaned.csv
+# Python & Jupyter caches
+__pycache__/
+*.py[cod]
+*$py.class
+.ipynb_checkpoints/
+
+# Arsip lokal & database scraping berukuran raksasa
+*.rar
+*.zip
+src/scraper_v1/*.db
+src/scraper_v1/*.db-wal
+src/scraper_v1/*.db-shm
+src/scraper_v1/cnbc_articles.csv
+src/scraper_v1/cnbc_articles_geopolitics.csv
+
+# Cache embedding 768d berukuran besar (otomatis dibuat ulang oleh notebook dari news_cleaned.csv)
+data/processed/embeddings_cache/finbert_title_articles_768d.npy
+data/processed/embeddings_cache/finbert_title_articles_768d_ids.npy
 data/cleaned/news_sentiment.csv
-reports/
-reports.zip

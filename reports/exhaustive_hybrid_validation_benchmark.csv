@@ -1,0 +1,19 @@
+Rank,Method,Category,Best_Model,Text_Dimension,Val_ROC_AUC,Val_Directional_Acc,Val_F1_Macro,Val_MCC,Val_Brier_Score
+1,fasttext,Dense Static Vectors,LogisticRegression,32,0.5762,0.5738,0.5425,0.143,0.2469
+2,glove,Dense Static Vectors,LogisticRegression,32,0.5552,0.557,0.4898,0.1124,0.2571
+3,finbert_prosus,Contextual Transformer,LogisticRegression,32,0.5471,0.5443,0.4936,0.0759,0.2534
+4,word2vec,Dense Static Vectors,LogisticRegression,32,0.5416,0.5612,0.5399,0.1133,0.2532
+5,flang_roberta,Contextual Transformer,LogisticRegression,32,0.5368,0.5316,0.4145,0.0452,0.2576
+6,all_minilm_l6,Contextual Transformer,RandomForest,32,0.5367,0.5274,0.3884,0.0303,0.2515
+7,ngrams_svd,Count / Lexical,RandomForest,32,0.5294,0.5274,0.3681,0.0362,0.2498
+8,hybrid_glove_finbert,Hybrid Multi-Embedding,LogisticRegression,32,0.5242,0.5401,0.4904,0.0654,0.2555
+9,roberta_base,Contextual Transformer,RandomForest,32,0.5213,0.519,0.4015,-0.0018,0.2516
+10,hybrid_dual_finance,Hybrid Multi-Embedding,LightGBM,32,0.5196,0.5148,0.4558,0.0014,0.2643
+11,Market Only (Model A Baseline),Time-Series Only,LogisticRegression,0,0.5174,0.5401,0.4452,0.0704,0.2522
+12,tfidf_svd,Count / Lexical,LightGBM,32,0.5018,0.5148,0.4815,0.0092,0.2611
+13,bow_svd,Count / Lexical,RandomForest,32,0.4967,0.519,0.4122,0.001,0.2521
+14,bm25_svd,Count / Lexical,LightGBM,32,0.4964,0.481,0.3889,-0.1052,0.256
+15,hybrid_bm25_glove,Hybrid Multi-Embedding,LogisticRegression,32,0.4951,0.5443,0.484,0.0767,0.2591
+16,hybrid_tri_level,Hybrid Multi-Embedding,LogisticRegression,32,0.4935,0.5105,0.4561,-0.0076,0.2563
+17,hybrid_bm25_finbert,Hybrid Multi-Embedding,LightGBM,32,0.4928,0.5654,0.4959,0.1373,0.2605
+18,hybrid_all_combined,Hybrid Multi-Embedding,LightGBM,32,0.4764,0.4979,0.4403,-0.0396,0.2645

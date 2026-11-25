@@ -1,0 +1,12 @@
+Phase,Model,Kategori,Dim,Val_Acc(%),Val_AUC,Val_F1,Val_MCC,Test_Acc(%),Delta_Test_vs_M0,Test_AUC,Test_F1,Test_MCC,Test_Brier,PT_Stat(p),McNemar_vs_M0
+Fase 5: Tugas 2 vs 3,"Model A (Tugas 2): Market Only [LR, 9d]",Tugas 2 Baseline,9,52.32,0.5081,0.4776,0.0252,54.55,3.9,0.5666,0.516,0.044,0.244,+0.55(0.584),p=0.430
+Fase 5: Tugas 2 vs 3,"Model A (MLP Anchor): M0_Market [MLP, 8d]",Tugas 2 Baseline,8,49.79,0.5146,0.4682,-0.0266,50.65,0.0,0.4759,0.4483,-0.0696,0.2553,-0.87(0.386),p=1.000
+Fase 5: Tugas 2 vs 3,"Model B1 (Tugas 2): Market + VADER & LM [LR, 26d]",Tugas 2 NLP Dasar,26,49.37,0.51,0.4406,-0.0476,57.79,7.14,0.5499,0.5053,0.0863,0.2428,+1.07(0.283),p=0.135
+Fase 5: Tugas 2 vs 3,"Model B2 (Tugas 2): Market + TF-IDF SVD [LR, 59d]",Tugas 2 NLP Dasar,59,47.26,0.4842,0.4722,-0.0506,51.3,0.65,0.5479,0.507,0.0845,0.2569,+1.05(0.293),p=1.000
+Fase 5: Tugas 2 vs 3,"Model B3 (Tugas 2): Market + Sent + TF-IDF [LR, 76d]",Tugas 2 NLP Dasar,76,52.32,0.5124,0.5231,0.0471,51.3,0.65,0.5682,0.507,0.0845,0.2584,+1.05(0.293),p=1.000
+Fase 5: Tugas 2 vs 3,"Model B1-MLP: Market + VADER & LM [MLP, 25d]",Tugas 2 NLP Dasar (MLP),25,50.63,0.4924,0.4814,-0.006,50.65,0.0,0.4907,0.4626,-0.0539,0.2701,-0.67(0.502),p=1.000
+Fase 5: Tugas 2 vs 3,"Model B2-MLP: Market + TF-IDF SVD [MLP, 58d]",Tugas 2 NLP Dasar (MLP),58,51.48,0.4969,0.4958,0.0146,57.14,6.49,0.4556,0.5294,0.0884,0.305,+1.10(0.271),p=0.184
+Fase 5: Tugas 2 vs 3,"Model B3-MLP: Market + Sent + TF-IDF [MLP, 75d]",Tugas 2 NLP Dasar (MLP),75,51.05,0.5228,0.4954,0.0075,56.49,5.84,0.5813,0.5159,0.069,0.2862,+0.86(0.391),p=0.233
+Fase 5: Tugas 2 vs 3,Model C-Default (Tugas 3): Late Fusion: Val-Tuned Weight (w=0.60),Tugas 3 Default,48,59.07,0.5697,0.554,0.1849,62.34,11.69,0.5799,0.5611,0.2035,0.2438,+2.53(0.011),p=0.015
+Fase 5: Tugas 2 vs 3,"Model C-Tuned (Tugas 3 Champion): Model C (Late Fusion Tuned, Trial 6, w=0.35)",Tugas 3 Tuned,64,58.65,0.6057,0.5405,0.1802,53.9,3.25,0.4969,0.4232,-0.0456,0.2499,-0.57(0.570),p=0.542
+Fase 5: Tugas 2 vs 3,Model C-Ref (Tugas 3): Market + FinBERT Judul Early MLP [40d],Tugas 3 Multimodal (Ref),40,57.81,0.5555,0.565,0.1492,62.34,11.69,0.6314,0.5961,0.2104,0.2391,+2.62(0.009),p=0.013

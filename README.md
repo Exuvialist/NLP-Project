@@ -63,3 +63,32 @@ Tujuan: menguji apakah fitur NLP dari berita geopolitik menambah sinyal prediksi
 - Split kronologis tanpa shuffle: train s/d 2024-12, validation 2025, test 2026; test dievaluasi sekali.
 - `StandardScaler`, `TfidfVectorizer`, dan `TruncatedSVD` selalu di-fit di dalam pipeline pada data train.
 - Hasil awal: fitur NLP belum terbukti menambah sinyal stabil (test AUC model0 0,567 vs model3 0,568; baseline selalu-naik akurasi 0,571). Detail di `reports/laporan_tugas2.md`.
+
+
+---
+
+# Pipeline Tugas 3 NLP - Penyempurnaan Model & Integrasi Multimodal
+
+Tujuan: membandingkan representasi teks klasik vs *contextual transformer embeddings*, mengeksplorasi granulitas teks, Topic Modeling (`NMF`, `BERTopic`), NER (`spaCy`, `Gazetteer Makro+FX`), fitur domain makro kausal, strategi *Early vs Late vs Dual Encoder Fusion*, *hyperparameter tuning* pada `Validation 2025`, serta studi ablasi lengkap Tugas 2 vs Tugas 3.
+
+## Struktur Tambahan Tugas 3
+- `requirements.txt` - daftar dependensi Python yang teruji untuk menjalankan seluruh pipeline
+- `src/nlp_ablation_features.py` - ekstraksi embedding headline FinBERT, `BERTopic(FinBERT)`, dan `spaCy NER` (fit Train-only)
+- `src/pipeline_5phase_features.py` - probabilitas sentimen FinBERT, `Gazetteer Makro+FX`, `NMF`, dan fitur domain makro kausal
+- `src/dual_encoder_modules.py` - arsitektur PyTorch `MultimodalDualEncoder` (`ArticleAttentionPooling` + `TabularEncoder` + `IntermediateGatedFusion`)
+- `src/extract_content_embeddings.py` - ekstraksi embedding harian `content_clean` dan `title+content` FinBERT
+- `src/generate_5phase_nb.py` - generator notebook (`--mode modular` dan `--mode standalone`)
+- `src/scraper_v1/` - skrip dan metadata scraping CNBC (dipindahkan ke dalam `src/`)
+- `notebook/11_full_5phase_nlp_fusion_pipeline.ipynb` - **notebook utama versi modular** (menggunakan modul di `src/`)
+- `notebook/11_full_5phase_nlp_fusion_pipeline_standalone.ipynb` - **versi standalone** (seluruh kode helper berada inline di notebook, tanpa impor `src/`)
+- `reports/pipeline5_*.csv` & `reports/figures/pipeline5_*.png` - tabel hasil Fase 1-5, HP tuning, UMAP, dan error analysis
+
+## Cara Menjalankan Tugas 3
+1. `pip install -r requirements.txt`
+2. `python -m spacy download en_core_web_sm`
+3. Jalankan `notebook/11_full_5phase_nlp_fusion_pipeline.ipynb` (versi modular) atau `notebook/11_full_5phase_nlp_fusion_pipeline_standalone.ipynb` (versi standalone) dengan `Run All`.
+
+## Ringkasan Hasil Utama (Test Set 2026)
+- `M0_Market (MLP, 8d)`: Test Acc **50.65%**, AUC `0.4759`, MCC `-0.0696`
+- `Model C (Late Fusion Default, w=0.60)`: Test Acc **62.34%** (`+11.69%` vs `M0`), AUC `0.5799`, MCC `+0.2035`, `PT=+2.53 (p=0.011)`, `McNemar p=0.015`
+- `Model C (Tuned Trial 6 via Val 2025, w=0.35)`: Val AUC naik ke `0.6057`, namun Test Acc turun ke **53.90%** (mengonfirmasi risiko *overfitting* pada dataset harian berukuran kecil `n=237`).
